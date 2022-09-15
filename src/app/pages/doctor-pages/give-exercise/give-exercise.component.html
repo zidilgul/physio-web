@@ -1,0 +1,137 @@
+<ul class="nav" style="margin: 0; flex-wrap: nowrap">
+  <li class="nav-item" style="width: 50%; text-align: end">
+    <img src="assets/img/physio.png" style="width: 10%" (click)="goToMain()" />
+  </li>
+  <li class="nav-item" style="width: 40%; text-align: end">
+    <img
+      src="/assets/img/logout.png"
+      title="Çıkış Yap"
+      style="width: 5%; margin-left: 50px"
+      (click)="logout()"
+    />
+  </li>
+</ul>
+
+<div class="card" style="margin: 20px">
+  <div class="row" style="padding: 5px; margin: 10px">
+    <h5>Hasta: {{ currentPatient.fullName }}</h5>
+  </div>
+  <div class="row card" style="padding: 5px; margin: 10px; text-align: center">
+    <main class="form-signin">
+      <form [formGroup]="newExerciseForm">
+        <div style="margin-bottom: 20px" class="container-fluid">
+          <br />
+          <div class="row" style="width: 100%">
+            <div class="dropdown col" style="width: auto; margin: 5px">
+              <div class="dropdown">
+                <button
+                  class="btn dropdown-toggle btn_drop"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style="width: 100%;"
+
+                >
+                  {{
+                    this.selectedBodyPart
+                      ? this.selectedBodyPart?.name
+                      : "Bölge Seç"
+                  }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a
+                    *ngFor="let item of bodyPartList"
+                    class="dropdown-item"
+                    (click)="setBodyPartParam(item)"
+                    >{{ item.name }}</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="dropdown col" style="width: auto; margin: 5px">
+              <div class="dropdown">
+                <button
+                  class="btn dropdown-toggle btn_drop"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style="width: 100%;"
+                  [disabled]="!bodyPartSet"
+                >
+                  {{
+                     this.selectedMove!=null ? this.selectedMove?.name : "Hareket Seç"
+                  }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a
+                    *ngFor="let item of moveList"
+                    class="dropdown-item"
+                    (click)="setMoveParam(item)"
+                    >{{ item.name }}</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="row" style="width: 100%">
+            <div class="col-6" style="padding-bottom: 10px; padding-top: 10px">
+              *Tekrar Sayısı:
+              <input
+                type="number"
+                formControlName="numberOfRepetitions"
+                class="textbox"
+                style="height: 40px; width: 100%"
+                min="1"
+                required
+                onKeyPress="if(this.value.length==4) return false;"
+              />
+            </div>
+            <div class="col-6" style="padding-bottom: 10px; padding-top: 10px">
+              *Set Sayısı:
+              <input
+                type="number"
+                formControlName="numberOfSets"
+                class="textbox"
+                style="height: 40px;  width: 100%"
+                min="1"
+                required
+                onKeyPress="if(this.value.length==4) return false;"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row" style="width: 100%">
+            <button
+              class="btn myBtn btn-block"
+              style="margin: auto; width: 50%"
+              (click)="giveExercise()"
+            >
+              Hareket Ata
+            </button>
+          </div>
+          <div class="row" style="width: 100%">
+            <button
+              class="btn"
+              data-toggle="modal"
+              data-target="#addPatientModal"
+              style="
+                border: none;
+                color: #6561d9;
+                text-decoration: underline;
+                margin: auto;
+              "
+              (click)="seeHistory()"
+            >
+              Geçmiş Egzersizleri Gör
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>

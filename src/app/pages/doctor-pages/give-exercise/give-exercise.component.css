@@ -1,0 +1,25 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom left, #6561d9 0%, white 100%);
+  font-family: "Quicksand", sans-serif;
+}
+.nav-item {
+  font-family: "Quicksand", sans-serif;
+  color: black;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.myBtn{
+  margin: 10px;
+  background: linear-gradient(to bottom left, #6561d9 0%, #cc99ff 100%);
+  color: white;
+}
+
+.btn_drop{
+  background-color: white ;
+  color: #6561d9;
+  border:  #6561d9 solid;
+}

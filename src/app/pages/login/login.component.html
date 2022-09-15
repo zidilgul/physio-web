@@ -1,0 +1,58 @@
+<div class="wrapper fadeInDown" style="margin-top: 100px">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <img
+        src="assets/img/physio.png"
+        id="icon"
+        style="margin: 10%; width: 35%"
+      />
+    </div>
+    <div class="col">
+      <form [formGroup]="loginForm">
+        <div class="row" style="margin-top: 10px;">
+          <input
+            formControlName="userName"
+            type="text"
+            class="fadeIn second"
+            placeholder="Kullanıcı Adı"
+            style="margin: auto;"
+            required
+            [ngStyle]="loginForm.hasError('required', 'userName') && submitted == true ? {'border': '2px solid rgba(255, 0, 0, 0.589)' , 'background-color': 'rgba(255, 103, 103, 0.089)'} : {}"
+            onKeyPress="if(this.value.length==11) return false;"
+
+            />
+        </div>
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-9"><input
+            #x
+            formControlName="password"
+            type="password"
+            class="fadeIn third"
+            placeholder="Şifre"
+            style="margin-left: 23px; margin-right: 0 !important; width: 100%;"
+            required
+            [ngStyle]="loginForm.hasError('required', 'password') && submitted == true ? {'border': '2px solid rgba(255, 0, 0, 0.589)' , 'background-color': 'rgba(255, 103, 103, 0.089)'} : {}"
+          /></div>
+          <div class="col-3" style="margin-top: 12px; margin-left: 0;">
+            <button 
+            type="button" 
+            class="btn"
+            (click)="x.type=x.type=='password'?'text':'password'"
+            style="margin: 0 !important;">
+              <img [src]="x.type == 'password' ? './../../../assets/img/visibility.png':'./../../../assets/img/visibility-2.png'" alt="">
+            </button></div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+          <input
+            type="button"
+            class="fadeIn fourth"
+            style="margin: auto;"
+            (click)="login()"
+            value="Giriş Yap"
+          />
+        </div>
+        <br>
+      </form>
+    </div>
+  </div>
+</div>

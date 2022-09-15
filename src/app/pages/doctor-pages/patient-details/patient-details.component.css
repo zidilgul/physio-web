@@ -1,0 +1,13 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom left, #6561d9 0%, white 100%);
+  font-family: "Quicksand", sans-serif;
+}
+.nav-item {
+  font-family: "Quicksand", sans-serif;
+  color: black;
+  margin: 10px;
+  cursor: pointer;
+}

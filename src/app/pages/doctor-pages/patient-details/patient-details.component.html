@@ -1,0 +1,52 @@
+<ul class="nav" style="margin: 0; flex-wrap: nowrap">
+  <li class="nav-item" style="width: 50%; text-align: end">
+    <img src="assets/img/physio.png" style="width: 10%"
+    (click)="goToMain()"/>
+  </li>
+  <li class="nav-item" style="width: 40%; text-align: end">
+    <img
+      src="/assets/img/logout.png"
+      title="Çıkış Yap"
+      style="width: 5%; margin-left: 50px"
+      (click)="logout()"
+    />
+  </li>
+</ul>
+<div class="card" style="padding: 20px; overflow-x: auto; margin: 20px">
+  <ng-template #message
+          >
+          <br><span style="text-align: center"> Hastanın egzersiz geçmişi bulunmamaktadır </span>
+        <br>
+        </ng-template>
+  <table *ngIf="showTable;else message" class="table table-striped" style="margin: 0">
+    <thead>
+      <h5>Hasta: {{currentPatient.fullName}} </h5>
+      <tr>
+        <th scope="col">Egzersiz</th>
+        <th scope="col">Sayısı</th>
+        <th scope="col">Bölge</th>
+        <th scope="col">Durumu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patientMove of patientMoveList">
+        <td scope="col">{{ patientMove.move | titlecase }}</td>
+        <td scope="col">{{ patientMove.numberOfSets}} x {{ patientMove.numberOfRepetitons}}</td>
+        <td scope="col">{{ patientMove.bodyPart | titlecase }}</td>
+        <td scope="col">{{patientMove.state ? "Tamamlandı" : "Tamamlanmadı"}} </td>
+
+      </tr>
+    </tbody>
+  </table>
+  <div class="row" style="width: 100%;">
+    <button
+      class="btn"
+      data-toggle="modal"
+      data-target="#addPatientModal"
+      style="border: none; color: #6561d9; text-decoration: underline; margin: auto;"
+    (click)="giveExercise()"
+      >
+      Egzersiz Atama Sayfasına Dön
+    </button>
+  </div>
+</div>
